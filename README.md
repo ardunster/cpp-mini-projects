@@ -1,4 +1,4 @@
-# cpp_minis
+# cpp-mini-projects
 ## C++ Mini Projects
 
 Assorted mini projects that I am making to practice C++.
