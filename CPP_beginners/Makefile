@@ -12,5 +12,5 @@ ifrun: if.cpp
 	./if
 
 ifelserun: ifelse.cpp
-	g++ -o ifelse ifelse.cpp
-	./ifelse
+	g++ -o ./build/ifelse ifelse.cpp
+	./build/ifelse
