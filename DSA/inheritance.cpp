@@ -2,6 +2,8 @@
 
 using namespace std;
 
+// Adapted out of book
+
 class BaseClass 
 {
 public:

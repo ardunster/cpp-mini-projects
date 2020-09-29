@@ -3,3 +3,8 @@
 inheritancerun: inheritance.cpp
 	g++ -o ./build/inheritance inheritance.cpp
 	./build/inheritance
+
+pointerrun: pointer.cpp
+	g++ -o ./build/pointer pointer.cpp
+	./build/pointer
+
