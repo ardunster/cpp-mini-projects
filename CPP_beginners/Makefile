@@ -24,4 +24,6 @@ arrayrun: array.cpp
 	g++ -o ./build/array array.cpp
 	./build/array
 
-	
+switchrun: switch.cpp
+	g++ -o ./build/switch switch.cpp
+	./build/switch

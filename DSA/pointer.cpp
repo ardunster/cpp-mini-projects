@@ -124,6 +124,44 @@ int main()
     cout << sum << endl;
     }
 
+    char b[5] = {'a', 'b', 'c', 'd', 'e'};
+
+    cout << "b: " << b << "&b: " << &b << endl;
+
+    for (int i = 0; i < 5; i++)
+    {
+        cout << "b[i]: " << b[i] << "\n&b[i]: " << &b[i] << flush;
+    }
+
+    char c = 'f';
+    cout << "c: " << c << "\n&c: " << &c << endl;
+
+    int d = 1;
+    cout << "d: " << d << "\n&d: " << &d << endl;
+
+    // All of this didn't work how I wanted because I didn't understand char:
+    // char *x;
+
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     b[i] = 'f';
+    //     // cout << "b[i]: " << b[i] << endl;
+    // }
+    // cout << x << endl; // segfault, lol
+
+    // for (char thing = *b, x = &b+1; x < b+5; x++)
+    // {
+    //     cout << "thing: " << thing << "x: " << x << endl;
+    // }
+
+    string e = b;
+
+    cout << "e: " << e << "&e: " << &e << endl;
+
+    char **x;
+    cout << "x: " << x << endl;
+    ++x;
+    cout << "x++ x: " << x << endl;
 
 
     return 0;
