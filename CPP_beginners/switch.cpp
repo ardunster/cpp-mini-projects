@@ -3,11 +3,9 @@
 
 using namespace std;
 
-int main()
+int get_input() 
 {
     int user_input = 0;
-
-    cout << "Bogus menu!!!" << endl;
     while (user_input == 0) {
     
     cout << "\nPlease choose from one of the following meaningless options:\n" <<
@@ -26,6 +24,18 @@ int main()
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         user_input = 0;
     }
+    }
+    return user_input;
+}
+
+int main()
+{
+    int user_input = 0;
+
+    cout << "Bogus menu!!!" << endl;
+
+    while (user_input == 0) {
+    user_input = get_input();
 
     switch (user_input) 
     {
@@ -55,6 +65,7 @@ int main()
     default:
         cout << "You have to pick a number on the list or it doesn't work :(\n" << endl;
         user_input = 0;
+    
     }
     }
     return 0;
