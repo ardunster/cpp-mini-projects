@@ -28,15 +28,8 @@ int get_input()
     return user_input;
 }
 
-int main()
+int select(int user_input)
 {
-    int user_input = 0;
-
-    cout << "Bogus menu!!!" << endl;
-
-    while (user_input == 0) {
-    user_input = get_input();
-
     switch (user_input) 
     {
     case 1: 
@@ -67,6 +60,20 @@ int main()
         user_input = 0;
     
     }
+    return user_input;
+}
+
+int main()
+{
+    int user_input = 0;
+
+    cout << "Bogus menu!!!" << endl;
+
+    while (user_input == 0) {
+    user_input = get_input();
+
+    user_input = select(user_input);
+
     }
     return 0;
 }

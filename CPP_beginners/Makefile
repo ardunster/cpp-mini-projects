@@ -27,3 +27,7 @@ arrayrun: array.cpp
 switchrun: switch.cpp
 	g++ -o ./build/switch switch.cpp
 	./build/switch
+
+headerrun: header.cpp
+	g++ -o ./build/header header.cpp
+	./build/header
