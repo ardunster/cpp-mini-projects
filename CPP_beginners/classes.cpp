@@ -3,6 +3,8 @@
 // Constructor and destructor
 // Getters and setters
 // Overloading constructor
+// this->
+// Constructor initialization list
 
 
 #include <iostream>

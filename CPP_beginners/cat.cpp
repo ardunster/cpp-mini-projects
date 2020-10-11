@@ -1,4 +1,3 @@
-#include <iostream>
 
 #include "cat.hpp"
 
@@ -11,13 +10,13 @@ using namespace std;
 Cat::Cat() {
     happy = true;
     name = "DefaultCat"; 
-    cout << "Constructing cat " << name << endl;
+    cout << "Constructing cat " << this->name << ": " << this << endl;
 }
 
-Cat::Cat(string input_name, bool input_happy) {
-    happy = input_happy;
-    name = input_name;
-    cout << "Constructing cat " << name << endl;
+Cat::Cat(string name, bool happy) {
+    this->happy = happy;
+    this->name = name;
+    cout << "Constructing cat " << this->name << ": " << this << endl;
 }
 
 
@@ -33,8 +32,8 @@ void Cat::no_luv() {
     happy = false;
 }
 
-void Cat::set_name(string new_name) {
-    name = new_name;
+void Cat::set_name(string name) {
+    this->name = name;
 
 }
 
@@ -47,11 +46,16 @@ void Cat::speak() {
 }
 
 string Cat::stringify() {
+    stringstream ss;
+
+    ss << "Name: " << name << "\nHappy?: ";
     if(happy) {
-        return "Name: " + name + "\nHappy?: Yes";
+        ss << "Yes";
     } else {
-        return "Name: " + name + "\nHappy?: No";
+        ss << "No";
     }
+
+    return ss.str();
 }
 
 Cat::~Cat() {
