@@ -35,3 +35,9 @@ headerrun: header.cpp
 classesrun: classes.cpp
 	g++ -o ./build/classes classes.cpp cat.cpp
 	./build/classes
+
+ssrun: stringstreams.cpp
+	g++ -o ./build/stringstreams stringstreams.cpp
+	./build/stringstreams
+
+	

@@ -10,7 +10,13 @@ using namespace std;
 
 Cat::Cat() {
     happy = true;
-    name = "Cat"; // Would really rather pass this in as a variable, hopefully that lesson is soon XD
+    name = "DefaultCat"; 
+    cout << "Constructing cat " << name << endl;
+}
+
+Cat::Cat(string input_name, bool input_happy) {
+    happy = input_happy;
+    name = input_name;
     cout << "Constructing cat " << name << endl;
 }
 

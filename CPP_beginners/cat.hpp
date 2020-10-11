@@ -12,6 +12,7 @@ private:
     string name;
 public:
     Cat();
+    Cat(string input_name, bool input_happy);
     void jump();
     void luvvies();
     void no_luv();

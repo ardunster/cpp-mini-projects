@@ -2,6 +2,7 @@
 // Data members (instance variables)
 // Constructor and destructor
 // Getters and setters
+// Overloading constructor
 
 
 #include <iostream>
@@ -13,10 +14,10 @@ using namespace std;
 int main () {
     cout << "If you weren't sure, we're starting the program here." << endl;
 
-    Cat muffins;
-    muffins.set_name("Muffins");
+    Cat muffins("Muffins", false);
+    // muffins.set_name("Muffins");
 
-    muffins.no_luv();
+    // muffins.no_luv();
     muffins.speak();
     cout << muffins.stringify() << endl;
     muffins.jump();
