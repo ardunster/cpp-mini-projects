@@ -31,3 +31,7 @@ switchrun: switch.cpp
 headerrun: header.cpp
 	g++ -o ./build/header header.cpp
 	./build/header
+
+classesrun: classes.cpp
+	g++ -o ./build/classes classes.cpp cat.cpp
+	./build/classes
