@@ -13,12 +13,15 @@ Cat::Cat() {
     cout << "Constructing cat " << this->name << ": " << this << endl;
 }
 
-Cat::Cat(string name, bool happy) {
-    this->happy = happy;
-    this->name = name;
-    cout << "Constructing cat " << this->name << ": " << this << endl;
-}
+// Cat::Cat(string name, bool happy) {
+//     this->happy = happy;
+//     this->name = name;
+//     cout << "Constructing cat " << this->name << ": " << this << endl;
+// }
 
+Cat::Cat(string name, bool happy): name(name), happy(happy) {
+    cout << "Constructing cat " << name << ": " << this << endl;
+}
 
 void Cat::jump() {
     cout << "Jumping to warm lap <3" << endl;
