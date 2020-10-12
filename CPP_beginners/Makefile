@@ -40,4 +40,6 @@ ssrun: stringstreams.cpp
 	g++ -o ./build/stringstreams stringstreams.cpp
 	./build/stringstreams
 
-	
+pointersrun: pointers.cpp
+	g++ -o ./build/pointers pointers.cpp
+	./build/pointers
