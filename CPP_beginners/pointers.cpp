@@ -87,6 +87,68 @@ int main() {
     } cout << endl;
 
 
+    // Pointer Arithmetic
+
+    const int ELEMENTS = 6;
+
+    string text2[ELEMENTS] = {"uno", "dos", "tres", "quatro", "cinco", "seis"};
+
+    string* p_text2 = text2;
+
+    cout << "*p_text2: " << *p_text2 << endl;
+
+    p_text2++;
+
+    cout << "*p_text2++: " << *p_text2 << endl;
+
+    p_text2 += 3;
+
+    cout << "*p_text2 += 3: " << *p_text2 << endl;
+
+    p_text2 -= 2;
+
+    cout << "*p_text2 -= 2: " << *p_text2 << endl;
+
+    //Reset
+    p_text2 = text2;
+
+    string* p_end2 = &text2[ELEMENTS-1];
+
+    // Compare
+
+    while (!(p_text2 > p_end2)) {
+        cout << "*p_text2: " << *p_text2 << endl;
+        p_text2++;
+    }
+
+    // Reset and compare again by pointing off the end of the array
+
+    p_text2 = text2;
+
+    p_end2 = &text2[ELEMENTS];
+
+    // Compare
+
+    while (p_text2 != p_end2) {
+        cout << "*p_text2: " << *p_text2 << endl;
+        p_text2++;
+    }
+
+    p_text2 = text2;
+
+    // Subtraction
+
+    int elements = p_end2 - p_text2;
+
+    cout << "elements: " << elements << endl;
+
+    // Middle of array
+
+    p_text2 += ELEMENTS/2;
+
+    cout << "*p_text2 after ELEMENTS/2: " << *p_text2 << endl;
+
+
 
     return 0;
 }
