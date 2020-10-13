@@ -46,5 +46,47 @@ int main() {
     manipulate(p_d_value);
     cout << "final d value: " << d_value << endl;
 
+    // Pointers and arrays
+
+    string texts[] = {"one", "two", "three", "four"};
+
+    cout << sizeof(texts)/sizeof(string) << endl;
+
+
+    // Looping through array without pointer
+    for(int i=0; i<sizeof(texts)/sizeof(string); i++) {
+        cout << "i: " << i << ", texts[i]: " << texts[i] << ", " << flush;
+    } cout << endl;
+
+
+    // Looping through array using pointer and array element reference syntax
+    string* p_texts = texts;
+
+    for(int i=0; i<sizeof(texts)/sizeof(string); i++) {
+        cout << "i: " << i << ", p_texts[i]: " << p_texts[i] << ", " << flush;
+    } cout << endl;
+
+
+    // Looping through array by incrementing pointer
+    for(int i=0; i<sizeof(texts)/sizeof(string); i++, p_texts++) {
+        cout << "p_texts: " << p_texts << ", *p_texts: " << *p_texts << ", " << flush;
+    } cout << endl;
+
+
+    // Looping through array by comparing pointers
+    string* p_element = &texts[0];
+    string* p_end = &texts[(sizeof(texts)/sizeof(string)) - 1];
+
+    while(true) {
+        cout << "p_element: " << p_element << ", *p_element: " << *p_element << ", " << flush;
+        if(p_element == p_end) {
+            break;
+        }
+        p_element++;
+        
+    } cout << endl;
+
+
+
     return 0;
 }
