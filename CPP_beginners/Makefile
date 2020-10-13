@@ -43,3 +43,7 @@ ssrun: stringstreams.cpp
 pointersrun: pointers.cpp
 	g++ -o ./build/pointers pointers.cpp
 	./build/pointers
+
+mathrun: arithmetic.cpp
+	g++ -o ./build/arithmetic arithmetic.cpp
+	./build/arithmetic
