@@ -47,3 +47,7 @@ pointersrun: pointers.cpp
 mathrun: arithmetic.cpp
 	g++ -o ./build/arithmetic arithmetic.cpp
 	./build/arithmetic
+
+chararrayrun: chararray.cpp
+	g++ -o ./build/chararray chararray.cpp
+	./build/chararray
