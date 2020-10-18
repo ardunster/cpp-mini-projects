@@ -51,3 +51,4 @@ mathrun: arithmetic.cpp
 chararrayrun: chararray.cpp
 	g++ -o ./build/chararray chararray.cpp
 	./build/chararray
+
