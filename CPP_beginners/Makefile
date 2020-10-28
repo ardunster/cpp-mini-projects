@@ -52,3 +52,14 @@ chararrayrun: chararray.cpp
 	g++ -o ./build/chararray chararray.cpp
 	./build/chararray
 
+referencesrun: references.cpp
+	g++ -o ./build/references references.cpp
+	./build/references
+
+construn: const.cpp
+	g++ -o ./build/const const.cpp
+	./build/const
+
+copyrun: copyconstructors.cpp
+	g++ -o ./build/copyconstructors copyconstructors.cpp
+	./build/copyconstructors
