@@ -67,3 +67,7 @@ copyrun: copyconstructors.cpp
 memoryrun: memory.cpp
 	g++ -o ./build/memory memory.cpp
 	./build/memory
+
+arrayfuncrun: arrayfunc.cpp
+	g++ -o ./build/arrayfunc arrayfunc.cpp
+	./build/arrayfunc
