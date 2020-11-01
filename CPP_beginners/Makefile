@@ -63,3 +63,7 @@ construn: const.cpp
 copyrun: copyconstructors.cpp
 	g++ -o ./build/copyconstructors copyconstructors.cpp
 	./build/copyconstructors
+
+memoryrun: memory.cpp
+	g++ -o ./build/memory memory.cpp
+	./build/memory
