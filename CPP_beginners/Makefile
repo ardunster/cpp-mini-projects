@@ -71,3 +71,7 @@ memoryrun: memory.cpp
 arrayfuncrun: arrayfunc.cpp
 	g++ -o ./build/arrayfunc arrayfunc.cpp
 	./build/arrayfunc
+
+namespacesrun: namespaces.cpp
+	g++ -o ./build/namespaces namespaces.cpp lights.cpp lamp.cpp
+	./build/namespaces
