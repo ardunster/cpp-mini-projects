@@ -3,12 +3,31 @@
 
 namespace Lights
 {
+/** Light class in Lights */
+class Light {
+private:
+    int id;
+public:
+    Light();
+    Light(int id);
+    ~Light();
+    void turn_on();
+    void get_info();
+};
 /** Lamp class in Lights */ 
-class Lamp {
+class Lamp: public Light {
 public:
     Lamp();
+    Lamp(int id);
     virtual ~Lamp();
     void turn_on();
+};
+
+class DeskLamp: public Lamp {
+public: 
+    DeskLamp();
+    ~DeskLamp();
+
 };
 
 } /* namespace Lights */
