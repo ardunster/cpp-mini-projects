@@ -75,3 +75,8 @@ arrayfuncrun: arrayfunc.cpp
 namespacesrun: namespaces.cpp
 	g++ -o ./build/namespaces namespaces.cpp lights.cpp lamp.cpp
 	./build/namespaces
+
+twosrun: twoscomplement.cpp
+	g++ -o ./build/twoscomplement twoscomplement.cpp
+	./build/twoscomplement
+
