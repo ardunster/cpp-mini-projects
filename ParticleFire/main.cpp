@@ -1,3 +1,5 @@
+#include <math.h>
+
 #include "window.hpp"
 
 int main () {
@@ -11,6 +13,17 @@ int main () {
     while (true) {
         // Update particles
         // Draw particles
+        int elapsed = SDL_GetTicks();
+
+        unsigned char red = (1 + sin(elapsed * 0.0008)) * 128;
+        unsigned char green = (1 + sin(elapsed * 0.0008)) * 128;
+        unsigned char blue = (1 + sin(elapsed * 0.0008)) * 128;
+
+        for(int y=0; y < Window::WINDOW_HEIGHT; y++) {
+            for(int x=0; x < Window::WINDOW_WIDTH; x++) {
+                mainwindow.set_pixel(x, y, red, green, blue);
+            }
+        }
 
         // Update screen
 

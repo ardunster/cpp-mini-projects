@@ -58,6 +58,20 @@ void Window::screen_update() {
     SDL_RenderPresent(renderer);
 }
 
+void Window::set_pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
+    Uint32 color = 0;
+
+    color += red;
+    color <<= 8;
+    color += green;
+    color <<= 8;
+    color += blue;
+    color <<= 8;
+    color += 0xFF;
+    
+    buffer[(y * WINDOW_WIDTH) + x] = color;
+}
+
 bool Window::process_events() {
     SDL_Event event;
 
