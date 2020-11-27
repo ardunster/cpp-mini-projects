@@ -8,12 +8,7 @@ run: main
 
 main: main.cpp
 	mkdir -p ./build
-	$(CXX) $(LDFLAGS) $(CSSFLAGS) -o ./build/main main.cpp
-
-testrun: test.cpp
-	mkdir -p ./build
-	$(CXX) $(LDFLAGS) $(CSSFLAGS) -o ./build/test test.cpp
-	./build/test
+	$(CXX) $(LDFLAGS) $(CSSFLAGS)  main.cpp window.cpp -o ./build/main
 
 clean:
 	rm -r ./build
