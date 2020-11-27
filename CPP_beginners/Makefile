@@ -80,3 +80,6 @@ twosrun: twoscomplement.cpp
 	g++ -o ./build/twoscomplement twoscomplement.cpp
 	./build/twoscomplement
 
+bitshiftrun: bitshift.cpp
+	g++ -o ./build/bitshift bitshift.cpp
+	./build/bitshift
