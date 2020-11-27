@@ -59,6 +59,13 @@ void Window::screen_update() {
 }
 
 void Window::set_pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
+
+    // Prevent pixel draw off edge of window
+    if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT) {
+        std::cout << "Pixel out of range" << std::endl;
+        return;
+    }
+
     Uint32 color = 0;
 
     color += red;

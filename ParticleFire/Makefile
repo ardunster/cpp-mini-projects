@@ -8,7 +8,7 @@ run: main
 
 main: main.cpp
 	mkdir -p ./build
-	$(CXX) $(LDFLAGS) $(CSSFLAGS)  main.cpp window.cpp -o ./build/main
+	$(CXX) $(LDFLAGS) $(CSSFLAGS)  main.cpp window.cpp particle.cpp swarm.cpp -o ./build/main
 
 clean:
 	rm -r ./build
