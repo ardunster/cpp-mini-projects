@@ -43,11 +43,6 @@ bool Window::init() {
 
     memset(buffer, 0, WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(Uint32));
 
-    for (int i=0; i < WINDOW_HEIGHT * WINDOW_WIDTH;  i++)
-    {
-        buffer[i] = 0x40204000;
-    }
-
     return true;
 }
 
@@ -58,11 +53,15 @@ void Window::screen_update() {
     SDL_RenderPresent(renderer);
 }
 
+void Window::clear() {
+    memset(buffer, 0, WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(Uint32));
+}
+
 void Window::set_pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
 
     // Prevent pixel draw off edge of window
     if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT) {
-        std::cout << "Pixel out of range" << std::endl;
+        std::cout << "Pixel out of range: x: " << x << " y: " << y << std::endl;
         return;
     }
 

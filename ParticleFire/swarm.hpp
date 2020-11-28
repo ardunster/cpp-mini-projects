@@ -11,6 +11,7 @@ public:
     Swarm();
     virtual ~Swarm();
     const Particle *const particles() {return m_particles;};
+    void update();
 };
 
 #endif // !SWARM_HPP
