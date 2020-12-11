@@ -83,3 +83,7 @@ twosrun: twoscomplement.cpp
 bitshiftrun: bitshift.cpp
 	g++ -o ./build/bitshift bitshift.cpp
 	./build/bitshift
+
+testrun: test.cpp
+	g++ -o ./build/test test.cpp
+	./build/test
