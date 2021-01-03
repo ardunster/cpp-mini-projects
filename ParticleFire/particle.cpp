@@ -5,7 +5,7 @@ Particle::Particle() : m_x(1.0), m_y(1.0) {
     // m_x = ((2.0 * rand())/RAND_MAX);
     // m_y = ((2.0 * rand())/RAND_MAX);
 
-    speed = (rand() % 10 + 1) * 0.001;
+    speed = (rand() % 10 + 1) * 0.000055;
     // xspeed = speed * ((2.0 * rand())/RAND_MAX - 1);
     // yspeed = speed * ((2.0 * rand())/RAND_MAX - 1);
 
