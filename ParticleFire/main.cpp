@@ -15,13 +15,15 @@ int main () {
     }
 
     Swarm swarm;
+    const int CURR_WIDTH = Window::WINDOW_WIDTH/2;
+    const int CURR_HEIGHT = Window::WINDOW_HEIGHT/2;
 
     while (true) {
         // Update color
         int elapsed = SDL_GetTicks();
 
         mainwindow.clear();
-        swarm.update();
+        swarm.update(elapsed);
 
         // std::cout << sin(elapsed) << std::endl;
 
@@ -39,8 +41,8 @@ int main () {
 
         for(int i=0; i < Swarm::NPARTICLES; i++) {
             Particle particle = p_particles[i];
-            int x = (particle.m_x * Window::WINDOW_WIDTH/2);
-            int y = (particle.m_y * Window::WINDOW_HEIGHT/2);
+            int x = (particle.m_x * CURR_WIDTH);
+            int y = (((particle.m_y - 1) * CURR_WIDTH) + CURR_HEIGHT);
             // if (i == 0) {
             // if (x <= -1 || x>= 800 || y <= -1 || y >= 600) {
             //     std::cout << "m_x: " << particle.m_x << " m_y: " << particle.m_y << " x: " << x << " y: " << y << std::endl;

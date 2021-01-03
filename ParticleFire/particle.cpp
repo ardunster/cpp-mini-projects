@@ -1,30 +1,39 @@
 #include "particle.hpp"
 
-Particle::Particle() {
+Particle::Particle() : m_x(1.0), m_y(1.0) {
 
-    m_x = ((2.0 * rand())/RAND_MAX);
-    m_y = ((2.0 * rand())/RAND_MAX);
+    // m_x = ((2.0 * rand())/RAND_MAX);
+    // m_y = ((2.0 * rand())/RAND_MAX);
 
     speed = (rand() % 10 + 1) * 0.001;
-    xspeed = speed * ((2.0 * rand())/RAND_MAX - 1);
-    yspeed = speed * ((2.0 * rand())/RAND_MAX - 1);
+    // xspeed = speed * ((2.0 * rand())/RAND_MAX - 1);
+    // yspeed = speed * ((2.0 * rand())/RAND_MAX - 1);
+
+    m_direction = ((2 * M_PI * rand())/RAND_MAX);
+    m_speed  = ((speed * rand())/RAND_MAX);
+    // m_speed = ((0.001 * rand())/RAND_MAX);
 
 }
 
-void Particle::update() {
-    m_x += xspeed;
-    m_y += yspeed;
+void Particle::update(int interval) {
+    double xspeed = m_speed * cos(m_direction);
+    double yspeed = m_speed * sin(m_direction);
 
-    if (m_x <= 0.01 || m_x >= 1.99) {
+    m_x += xspeed * interval;
+    m_y += yspeed * interval;
+
+    if (m_x <= 0 || m_x >= 2) {
         // xspeed = -xspeed;
         // m_x += (2*xspeed);
         m_x = 1.0;
+        m_y = 1.0;
     }
 
-    if (m_y <= 0.01 || m_y >= 1.99) {
+    if (m_y <= 0 || m_y >= 2) {
         // yspeed = -yspeed;
         // m_y += (2*yspeed);
         m_y = 1.0;
+        m_x = 1.0;
     }
 
 }
