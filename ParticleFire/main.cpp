@@ -22,7 +22,7 @@ int main () {
         // Update color
         int elapsed = SDL_GetTicks();
 
-        mainwindow.clear();
+        // mainwindow.clear();
         swarm.update(elapsed);
 
         // std::cout << sin(elapsed) << std::endl;
@@ -49,6 +49,8 @@ int main () {
             // }
             mainwindow.set_pixel(x, y, red, green, blue);
         }
+
+        mainwindow.box_blur();
 
         // Update screen
         mainwindow.screen_update();

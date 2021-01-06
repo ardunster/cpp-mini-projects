@@ -1,7 +1,12 @@
 #include "window.hpp"
 
 
-Window::Window(): window(NULL), renderer(NULL), texture(NULL), buffer(NULL) {}
+Window::Window(): window(NULL),
+                  renderer(NULL),
+                  texture(NULL),
+                  buffer(NULL),
+                  buffer_blur(NULL)
+                  {}
 
 bool Window::init() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -40,8 +45,12 @@ bool Window::init() {
     }
 
    buffer = new Uint32[WINDOW_HEIGHT * WINDOW_WIDTH];
+   buffer_blur = new Uint32[WINDOW_HEIGHT * WINDOW_WIDTH];
+
 
     memset(buffer, 0, WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(Uint32));
+    memset(buffer_blur, 0, WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(Uint32));
+
 
     return true;
 }
@@ -55,6 +64,54 @@ void Window::screen_update() {
 
 void Window::clear() {
     memset(buffer, 0, WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(Uint32));
+    memset(buffer_blur, 0, WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(Uint32));
+
+}
+
+void Window::box_blur() {
+    // Swap buffers, so information is in blur buffer and we are painting to original
+    Uint32 *temp = buffer;
+    buffer = buffer_blur;
+    buffer_blur = temp;
+
+
+
+    for(int y = 0; y < WINDOW_HEIGHT; y++) {
+        for(int x = 0; x < WINDOW_WIDTH; x++) {
+
+            int red_total = 0;
+            int green_total = 0;
+            int blue_total = 0;
+            int count = 0;
+
+            // For each pixel, average surrounding pixels.
+            for(int row = -1; row <= 1; row++) {
+                for(int col = -1; col <= 1; col++) {
+                    int currentx = x + col;
+                    int currenty = y + row;
+
+                    if(currentx >= 0 && currentx < WINDOW_WIDTH && currenty >= 0 && currenty < WINDOW_HEIGHT) {
+                        Uint32 color = buffer_blur[(currenty * WINDOW_WIDTH) + currentx];
+                        Uint8 red = color >> 24;
+                        Uint8 green = color >> 16;
+                        Uint8 blue = color >> 8;
+
+                        red_total += red;
+                        green_total += green;
+                        blue_total += blue;
+
+                        ++count;
+                    }
+                }
+            }
+
+            Uint8 red = red_total/count;
+            Uint8 green = green_total/count;
+            Uint8 blue = blue_total/count;
+
+            set_pixel(x, y, red, green, blue);
+        }
+    }
 }
 
 void Window::set_pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
@@ -94,6 +151,7 @@ bool Window::process_events() {
 void Window::close() {
 
     delete [] buffer;
+    delete [] buffer_blur;
     SDL_DestroyTexture(texture);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

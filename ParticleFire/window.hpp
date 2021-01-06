@@ -10,6 +10,7 @@ private:
     SDL_Renderer *renderer;
     SDL_Texture *texture;
     Uint32 *buffer;
+    Uint32 *buffer_blur;
 
 public:
     const static int WINDOW_WIDTH = 800;
@@ -19,6 +20,7 @@ public:
     bool init();
     void screen_update();
     void clear();
+    void box_blur();
     void set_pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue);
     bool process_events();
     void close();
