@@ -84,6 +84,10 @@ bitshiftrun: bitshift.cpp
 	g++ -o ./build/bitshift bitshift.cpp
 	./build/bitshift
 
+bitwiserun: bitwise.cpp
+	g++ -o ./build/bitwise bitwise.cpp
+	./build/bitwise
+
 testrun: test.cpp
 	g++ -o ./build/test test.cpp
 	./build/test
