@@ -84,12 +84,13 @@ void Window::box_blur() {
             int blue_total = 0;
             int count = 0;
 
-            // For each pixel, average surrounding pixels.
+            // For each pixel, average surrounding pixels in source buffer.
             for(int row = -1; row <= 1; row++) {
                 for(int col = -1; col <= 1; col++) {
                     int currentx = x + col;
                     int currenty = y + row;
 
+                    // Skip pixels off edge of screen.
                     if(currentx >= 0 && currentx < WINDOW_WIDTH && currenty >= 0 && currenty < WINDOW_HEIGHT) {
                         Uint32 color = buffer_blur[(currenty * WINDOW_WIDTH) + currentx];
                         Uint8 red = color >> 24;
@@ -100,15 +101,18 @@ void Window::box_blur() {
                         green_total += green;
                         blue_total += blue;
 
+                        // Add to count which will be used for average.
                         ++count;
                     }
                 }
             }
 
+            // Average color channels.
             Uint8 red = red_total/count;
             Uint8 green = green_total/count;
             Uint8 blue = blue_total/count;
 
+            // Update the pixel in active buffer with the average.
             set_pixel(x, y, red, green, blue);
         }
     }

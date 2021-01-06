@@ -5,14 +5,14 @@
 #include <math.h>
 
 class Particle {
+private:
+    double speed;
+    double m_speed;
+    double m_direction;
+    void init();
 public:
     double m_x;
     double m_y;
-    double speed;
-    // double xspeed;
-    // double yspeed;
-    double m_speed;
-    double m_direction;
     Particle();
     virtual ~Particle();
     void update(int interval);
