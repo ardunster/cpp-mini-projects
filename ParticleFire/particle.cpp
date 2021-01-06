@@ -16,6 +16,9 @@ Particle::Particle() : m_x(1.0), m_y(1.0) {
 }
 
 void Particle::update(int interval) {
+
+    m_direction += interval * 0.0004;
+
     double xspeed = m_speed * cos(m_direction);
     double yspeed = m_speed * sin(m_direction);
 

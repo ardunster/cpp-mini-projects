@@ -8,7 +8,7 @@ private:
     Particle *m_particles;
     int last_time;
 public:
-    const static int NPARTICLES = 7000;
+    const static int NPARTICLES = 3000;
     Swarm();
     virtual ~Swarm();
     const Particle *const particles() {return m_particles;};
