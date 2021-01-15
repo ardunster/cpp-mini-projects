@@ -1,0 +1,32 @@
+cmake_minimum_required(VERSION 3.0.0)
+
+set(VAR "CMake for Cross-Platform C++ Projects")
+
+string(FIND ${VAR} "for" find_var)
+message(${find_var})
+
+string(REPLACE "Projects" "Project" replaced_var ${VAR})
+message(${replaced_var})
+
+string(REPLACE "Cross" "Fred" replaced_fred ${VAR})
+message(${replaced_fred})
+message(${VAR})
+
+string(FIND ${VAR} "steve" find_var)
+message(${find_var})
+
+string(PREPEND replaced_var "Become perfectly entirely adept at ")
+message(${replaced_var})
+
+string(APPEND replaced_fred " Stephen")
+message(${replaced_fred})
+
+string(TOLOWER ${replaced_var} lower_case_var)
+message(${lower_case_var})
+
+string(TOUPPER ${replaced_fred} replaced_fred)
+message(${replaced_fred})
+
+string(COMPARE EQUAL ${replaced_fred} "CMAKE FOR FRED-PLATFORM C++ PROJECTS
+STEPHEN" reality_check_var)
+message(${reality_check_var})
