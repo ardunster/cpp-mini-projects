@@ -1,0 +1,58 @@
+cmake_minimum_required(VERSION 3.0.0)
+
+set(Name Alice)
+
+if(DEFINED Name)
+    message("Name: Definitely")
+else()
+    message("Name: Indefinitely")
+endif()
+
+if(DEFINED Age)
+    message("Age: Definitely")
+else()
+    message("Age: Indefinitely")
+endif()
+
+if(COMMAND target_link_libraries)
+    message("Target dem link libraries")
+elseif(COMMAND target_link_library)
+    message("Target dat one link library")
+else()
+    message("No target :(")
+endif()
+
+if(COMMAND target_link_library)
+message("Target dat one link library")
+else()
+    message("No target :(")
+endif()
+
+if(EXISTS ./CMakeListsIF.txt)
+    message("Totally exists")
+else()
+    message("What're you looking for again?")
+endif()
+
+
+# set(Name1 Bob)
+set(Name1 Nobody)
+set(Name2 Bob)
+
+if(Name1 STRLESS Name2)
+    message("${Name1} is less than ${Name2}")
+else()
+    message("${Name1} is not less than ${Name2}")
+endif()
+
+if(Name1 STRGREATER Name2)
+    message("${Name1} is greater than ${Name2}")
+else()
+    message("${Name1} is not greater than ${Name2}")
+endif()
+
+if(Name1 STREQUAL Name2)
+    message("${Name1} is equal to ${Name2}")
+else()
+    message("${Name1} is not equal to ${Name2}")
+endif()
