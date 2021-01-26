@@ -1,7 +1,10 @@
 #include "window.hpp"
 
 
-Window::Window(): window(NULL),
+Window::Window(int width, int height):
+                  window_width(width),
+                  window_height(height),
+                  window(NULL),
                   renderer(NULL),
                   texture(NULL),
                   buffer(NULL),
@@ -16,7 +19,7 @@ bool Window::init() {
     
     window = SDL_CreateWindow("Particle Fire Dance",
         SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-        WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+        window_width, window_height, SDL_WINDOW_SHOWN);
 
     if (window == NULL) {
         std::cout << "Failed to create window, error: " << SDL_GetError() << std::endl;
@@ -34,7 +37,7 @@ bool Window::init() {
     }
 
     texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
-        SDL_TEXTUREACCESS_STATIC, WINDOW_WIDTH, WINDOW_HEIGHT);
+        SDL_TEXTUREACCESS_STATIC, window_width, window_height);
 
     if (texture == NULL) {
         std::cout << "Failed to create texture, error: " << SDL_GetError() << std::endl;
@@ -44,27 +47,27 @@ bool Window::init() {
         return false;
     }
 
-   buffer = new Uint32[WINDOW_HEIGHT * WINDOW_WIDTH];
-   buffer_blur = new Uint32[WINDOW_HEIGHT * WINDOW_WIDTH];
+   buffer = new Uint32[window_height * window_width];
+   buffer_blur = new Uint32[window_height * window_width];
 
 
-    memset(buffer, 0, WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(Uint32));
-    memset(buffer_blur, 0, WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(Uint32));
+    memset(buffer, 0, window_width * window_height * sizeof(Uint32));
+    memset(buffer_blur, 0, window_width * window_height * sizeof(Uint32));
 
 
     return true;
 }
 
 void Window::screen_update() {
-    SDL_UpdateTexture(texture, NULL, buffer, WINDOW_WIDTH * sizeof(Uint32));
+    SDL_UpdateTexture(texture, NULL, buffer, window_width * sizeof(Uint32));
     SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, texture, NULL, NULL);
     SDL_RenderPresent(renderer);
 }
 
 void Window::clear() {
-    memset(buffer, 0, WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(Uint32));
-    memset(buffer_blur, 0, WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(Uint32));
+    memset(buffer, 0, window_width * window_height * sizeof(Uint32));
+    memset(buffer_blur, 0, window_width * window_height * sizeof(Uint32));
 
 }
 
@@ -76,8 +79,8 @@ void Window::box_blur() {
 
 
 
-    for(int y = 0; y < WINDOW_HEIGHT; y++) {
-        for(int x = 0; x < WINDOW_WIDTH; x++) {
+    for(int y = 0; y < window_height; y++) {
+        for(int x = 0; x < window_width; x++) {
 
             int red_total = 0;
             int green_total = 0;
@@ -90,8 +93,8 @@ void Window::box_blur() {
                     int currentx = x + col;
                     int currenty = y + row;
 
-                    if(currentx >= 0 && currentx < WINDOW_WIDTH && currenty >= 0 && currenty < WINDOW_HEIGHT) {
-                        Uint32 color = buffer_blur[(currenty * WINDOW_WIDTH) + currentx];
+                    if(currentx >= 0 && currentx < window_width && currenty >= 0 && currenty < window_height) {
+                        Uint32 color = buffer_blur[(currenty * window_width) + currentx];
                         Uint8 red = color >> 24;
                         Uint8 green = color >> 16;
                         Uint8 blue = color >> 8;
@@ -117,7 +120,7 @@ void Window::box_blur() {
 void Window::set_pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
 
     // Prevent pixel draw off edge of window
-    if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT) {
+    if (x < 0 || x >= window_width || y < 0 || y >= window_height) {
         // std::cout << "Pixel out of range: x: " << x << " y: " << y << std::endl;
         x = 0;
         y = 0;
@@ -134,7 +137,7 @@ void Window::set_pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
     color <<= 8;
     color += 0xFF;
     
-    buffer[(y * WINDOW_WIDTH) + x] = color;
+    buffer[(y * window_width) + x] = color;
 }
 
 bool Window::process_events() {

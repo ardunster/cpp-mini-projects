@@ -13,10 +13,10 @@ private:
     Uint32 *buffer_blur;
 
 public:
-    const static int WINDOW_WIDTH = 800;
-    const static int WINDOW_HEIGHT = 600;
+    const int window_width;
+    const int window_height;
 
-    Window();
+    Window(int width, int height);
     bool init();
     void screen_update();
     void clear();

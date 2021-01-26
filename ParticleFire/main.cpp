@@ -4,19 +4,35 @@
 #include "swarm.hpp"
 #include "window.hpp"
 
+// Global variable defaults
+const int NPARTICLES = 3000;
+const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 600;
+const float RED_SPEED_FACTOR = 0.0008;
+const float GREEN_SPEED_FACTOR = 0.0009;
+const float BLUE_SPEED_FACTOR = 0.0007;
+
+unsigned char update_color(int elapsed, float color_speed_factor) {
+    return ((1 + sin(elapsed * color_speed_factor)) * 78) + 100;
+}
+
 int main () {
 
     srand(time(NULL));
 
-    Window mainwindow;
+    Window mainwindow(WINDOW_WIDTH, WINDOW_HEIGHT);
 
     if (!mainwindow.init()) {
         std::cout << "You broke it." << std::endl;
     }
 
-    Swarm swarm;
-    const int CURR_WIDTH = Window::WINDOW_WIDTH/2;
-    const int CURR_HEIGHT = Window::WINDOW_HEIGHT/2;
+    Swarm swarm(NPARTICLES);
+    const int CURR_WIDTH = mainwindow.window_width/2;
+    const int CURR_HEIGHT = mainwindow.window_height/2;
+
+    unsigned char red;
+    unsigned char green;
+    unsigned char blue;
 
     while (true) {
         // Update color
@@ -25,28 +41,17 @@ int main () {
         // mainwindow.clear();
         swarm.update(elapsed);
 
-        // std::cout << sin(elapsed) << std::endl;
-
-        unsigned char red = ((1 + sin(elapsed * 0.0008)) * 78) + 100;
-        unsigned char green = ((1 + sin(elapsed * 0.0009)) * 78) + 100;
-        unsigned char blue = ((1 + sin(elapsed * 0.0007)) * 78) + 100;
-        
-
-        // unsigned char red = ((1 + sin(elapsed * 0.0008)) * 128);
-        // unsigned char green = ((1 + sin(elapsed * 0.0009)) * 128);
-        // unsigned char blue = ((1 + sin(elapsed * 0.0007)) * 128);
+        red = update_color(elapsed, RED_SPEED_FACTOR);
+        green = update_color(elapsed, GREEN_SPEED_FACTOR);
+        blue = update_color(elapsed, BLUE_SPEED_FACTOR);
 
         // Draw particles
         const Particle *const p_particles = swarm.particles();
 
-        for(int i=0; i < Swarm::NPARTICLES; i++) {
+        for(int i=0; i < swarm.nparticles; i++) {
             Particle particle = p_particles[i];
             int x = (particle.m_x * CURR_WIDTH);
             int y = (((particle.m_y - 1) * CURR_WIDTH) + CURR_HEIGHT);
-            // if (i == 0) {
-            // if (x <= -1 || x>= 800 || y <= -1 || y >= 600) {
-            //     std::cout << "m_x: " << particle.m_x << " m_y: " << particle.m_y << " x: " << x << " y: " << y << std::endl;
-            // }
             mainwindow.set_pixel(x, y, red, green, blue);
         }
 
