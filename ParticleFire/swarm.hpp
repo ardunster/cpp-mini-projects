@@ -8,8 +8,8 @@ private:
     Particle *m_particles;
     int last_time;
 public:
-    const static int NPARTICLES = 3000;
-    Swarm();
+    const int nparticles;
+    Swarm(int nparticles);
     virtual ~Swarm();
     const Particle *const particles() {return m_particles;};
     void update(int elapsed);
